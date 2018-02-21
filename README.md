@@ -3,7 +3,8 @@ By Brian Kim, February 20, 2018
 
 The original Trufffle's PetShop tutorial requires Ganache, MetaMask to run the sample code. This tutorial is for running the sample code with geth and without Metamask. For this purpose, several modifications to source code are necessary to collaborate with geth. Most of the modifications are configuration of network envrionment such as **port** and **IP address**.
 
-## 1. Modify port in truffle.js
+## 1. Modify port in *truffle.js*
+Specify the same **port** number where the geth is listening. For example, if the geth is listening **port** 8545 (default) then the same **port** number has to be set in *truffle.js* file
 ```javascript
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -20,12 +21,12 @@ module.exports = {
 ```
 ## 2. Unlock account before submitting transactions
 
-Add following line before calling web3.eth.getAccounts within handleAdopt function in app.js
+Add following line before calling **web3.eth.getAccounts** within **handleAdopt** function in *app.js*
 ```javascript
    web3.personal.unlockAccount(web3.personal.listAccounts[0],"PASSPHASE")
 ```
-## 3 Modify gas limit
-
+## 3. Modify gas limit
+The gas limit is related to the configuration of your private Ethereum network. 
 ##### 3.1 Check gas limit on geth console.
 ```javascript
 > eth.getBlock("pending").gasLimit
